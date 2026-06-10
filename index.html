@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+
+:root{
+    --bg:#3f3f3f;
+
+    --cake1:#f2c6a8;
+    --cake2:#e8b38f;
+    --cake3:#dc9d77;
+
+    --text:#ffe3c2;
+    --name:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at center,
+    #5a5a5a 0%,
+    #3f3f3f 75%);
+
+    font-family:'Segoe UI',sans-serif;
+}
+
+.scene{
+    text-align:center;
+}
+
+.cake{
+    position:relative;
+    width:320px;
+    height:280px;
+    margin:auto;
+}
+
+/* ==========================
+   PLATE
+========================== */
+
+.plate{
+    position:absolute;
+    width:240px;
+    height:6px;
+    background:white;
+    border-radius:50px;
+
+    left:50%;
+    bottom:30px;
+    transform:translateX(-50%);
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.30),
+    0 0 30px rgba(255,255,255,.15);
+}
+
+/* ==========================
+   CAKE LAYERS
+========================== */
+
+.layer{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:0;
+    border-radius:5px;
+}
+
+.layer1{
+    width:180px;
+    height:34px;
+    bottom:40px;
+
+    background:
+    linear-gradient(
+    to bottom,
+    #f7d6bf,
+    var(--cake1));
+
+    animation:
+    drop .65s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.layer2{
+    width:155px;
+    height:34px;
+    bottom:74px;
+
+    background:
+    linear-gradient(
+    to bottom,
+    #f3c9ac,
+    var(--cake2));
+
+    animation:
+    drop .65s cubic-bezier(.22,1,.36,1)
+    .45s forwards;
+}
+
+.layer3{
+    width:130px;
+    height:34px;
+    bottom:108px;
+
+    background:
+    linear-gradient(
+    to bottom,
+    #efba97,
+    var(--cake3));
+
+    animation:
+    drop .65s cubic-bezier(.22,1,.36,1)
+    .90s forwards;
+}
+
+/* ==========================
+   ICING
+========================== */
+
+.icing{
+    position:absolute;
+
+    width:130px;
+    height:16px;
+
+    left:50%;
+    bottom:142px;
+
+    transform:translateX(-50%);
+
+    background:
+    linear-gradient(
+    to bottom,
+    #ffffff,
+    #f3f3f3);
+
+    border-radius:20px;
+
+    opacity:0;
+
+    animation:
+    show .35s ease-out
+    1.45s forwards;
+}
+
+.drip{
+    position:absolute;
+    background:white;
+    border-radius:0 0 12px 12px;
+}
+
+.drip1{
+    width:10px;
+    height:20px;
+    left:12px;
+}
+
+.drip2{
+    width:10px;
+    height:13px;
+    left:42px;
+}
+
+.drip3{
+    width:10px;
+    height:24px;
+    left:72px;
+}
+
+.drip4{
+    width:10px;
+    height:15px;
+    left:105px;
+}
+
+/* ==========================
+   CANDLE
+========================== */
+
+.candle{
+    position:absolute;
+
+    width:6px;
+    height:40px;
+
+    background:
+    linear-gradient(
+    to right,
+    #ffffff,
+    #ececec);
+
+    left:50%;
+    bottom:158px;
+
+    transform:translateX(-50%);
+    opacity:0;
+
+    animation:
+    dropCandle .55s
+    cubic-bezier(.22,1,.36,1)
+    1.65s forwards;
+}
+
+/* ==========================
+   FLAME
+========================== */
+
+.flame{
+    position:absolute;
+
+    width:14px;
+    height:22px;
+
+    left:50%;
+    bottom:196px;
+
+    transform:translateX(-50%);
+
+    background:
+    radial-gradient(
+    circle,
+    #fff9c4 0%,
+    #ffd54f 55%,
+    #ff9800 100%);
+
+    border-radius:
+    50% 50% 50% 50% /
+    65% 65% 35% 35%;
+
+    opacity:0;
+
+    box-shadow:
+    0 0 15px #ffd54f,
+    0 0 30px #ff9800,
+    0 0 50px rgba(255,165,0,.4);
+
+    animation:
+    show .20s ease-out 2.20s forwards,
+    flicker 1s ease-in-out infinite 2.20s;
+}
+
+/* ==========================
+   TEXT
+========================== */
+
+.text{
+    color:var(--text);
+    font-size:24px;
+    font-weight:300;
+    letter-spacing:1px;
+    margin-top:10px;
+}
+
+.name{
+    color:var(--name);
+    font-size:14px;
+    margin-top:6px;
+    letter-spacing:4px;
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes drop{
+
+    0%{
+        transform:translate(-50%,-220px);
+        opacity:0;
+    }
+
+    70%{
+        transform:translate(-50%,10px);
+        opacity:1;
+    }
+
+    85%{
+        transform:translate(-50%,-4px);
+    }
+
+    100%{
+        transform:translate(-50%,0);
+        opacity:1;
+    }
+}
+
+@keyframes dropCandle{
+
+    0%{
+        transform:translate(-50%,-180px);
+        opacity:0;
+    }
+
+    70%{
+        transform:translate(-50%,6px);
+        opacity:1;
+    }
+
+    85%{
+        transform:translate(-50%,-2px);
+    }
+
+    100%{
+        transform:translate(-50%,0);
+        opacity:1;
+    }
+}
+
+@keyframes show{
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes flicker{
+
+    0%,100%{
+        transform:
+        translateX(-50%)
+        scale(1)
+        rotate(-1deg);
+    }
+
+    50%{
+        transform:
+        translateX(-50%)
+        scale(1.08)
+        rotate(1deg);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="cake">
+
+        <div class="plate"></div>
+
+        <div class="layer layer1"></div>
+        <div class="layer layer2"></div>
+        <div class="layer layer3"></div>
+
+        <div class="icing">
+            <div class="drip drip1"></div>
+            <div class="drip drip2"></div>
+            <div class="drip drip3"></div>
+            <div class="drip drip4"></div>
+        </div>
+
+        <div class="candle"></div>
+        <div class="flame"></div>
+
+    </div>
+
+    <div class="text">
+        Happy Birthday!
+        <div class="name">SHAHBAZ</div>
+    </div>
+
+</div>
+
+</body>
+</html>
